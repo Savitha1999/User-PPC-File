@@ -53,7 +53,7 @@ export default function PricingPlans({phoneNumber}) {
       phoneNumber
     };
 
-    setLoadingIndex(index); // Set loading state for the clicked card
+    setLoadingIndex(index); 
 
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/register-plan`, planData);

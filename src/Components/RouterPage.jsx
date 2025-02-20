@@ -54,6 +54,14 @@ import SoldOutBuyer from './Detail/SoldOutBuyer'
 import FavoriteOwner from './Detail/FavoriteOwner'
 import FavoriteBuyer from './Detail/FavoriteBuyer'
 import InterestOwner from './Detail/InterestOwner'
+import AddProperty from './AddProperty'
+import MyProperties from './MyProperties'
+import Removedproperty from './RemovedProperty'
+import AddPricingPlans from './AddPricingPlans'
+import MyPlans from './ExpiredPlans'
+import ExpiredPlans from './ExpiredPlans';
+import Notification  from './Notification'
+import ZeroView from './ZeroView'
 
 
 
@@ -75,7 +83,7 @@ export default function RouterPage() {
         <Route path='/edit-form' element={<EditForm />} />
         <Route path='/detail' element={<Details />} />
         <Route path='/plans' element={< PricingPlans/>} />
-        <Route path='/add-plan' element={< AddPlan/>} />
+        <Route path='/add-plan/:phoneNumber' element={< AddPricingPlans/>} />
         <Route path='/about' element={<About />} />
         <Route path='/refund-policy' element={< RefundPolicy/>} />
         <Route path='/about-mobile' element={<AboutMobile />} />
@@ -86,6 +94,10 @@ export default function RouterPage() {
         <Route path='/our-support' element={< OurSupport  />} />
         <Route path='/my-profile' element={< MyProfile  />} />
         <Route path='/my-plan' element={< MyPlan  />} />
+        <Route path='/expired-plans' element={< ExpiredPlans  />} />
+        <Route path='/pricing-plans' element={< AddPlan  />} />
+
+
 
         <Route path='/contact-buyer' element={< ContactedBuyers/>} />
         <Route path='/leads' element={< LeadsCenter />} />
@@ -118,8 +130,15 @@ export default function RouterPage() {
         <Route path='/soldout-buyer/:phoneNumber' element={<SoldOutBuyer/>} />
         <Route path='/favorite-owner/:phoneNumber' element={< FavoriteOwner/>} />
         <Route path='/favorite-buyer/:phoneNumber' element={<FavoriteBuyer/>} />
+        <Route path='/add-property/:phoneNumber' element={<AddProperty/>} />
+        <Route path='/my-property' element={<MyProperties/>} />
+        <Route path='/removed-property' element={<Removedproperty/>} />
+        <Route path='/notification' element={<Notification/>} />
+        <Route path='/zero-view' element={<ZeroView/>} />
 
 
+
+        
     </Routes>
     </BrowserRouter> 
     // </PhoneNumberProvider> 

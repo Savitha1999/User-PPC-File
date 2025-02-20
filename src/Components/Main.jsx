@@ -33,6 +33,8 @@ import OwnerMenu from './OwnerMenu';
 import BuyerMenu from './BuyerMenu';
 import CardsDemo from './CardsDemo';
 import BuyerList from './BuyerList';
+import ZeroView from './ZeroView';
+import Building from './Building';
 
 const Main = () => {
   const [ppcId, setPpcId] = useState(null); // Add state for ppcId
@@ -130,6 +132,24 @@ const Main = () => {
     { icon: logo11, text: 'Buyer Menu', content: 'topBuyerMenu' },
   ];
 
+//   const PhoneNumber = `${countryCode}${phoneNumber}`;
+
+// const topBarItems = [
+//     { icon: logo, text: 'Py Property', content: 'topPyProperty', phoneNumber: PhoneNumber },
+//     { icon: logo2, text: 'All Property', content: 'topAllProperty', phoneNumber: PhoneNumber },
+//     { icon: logo3, text: 'Buyer List', content: 'topMBuyerList', phoneNumber: PhoneNumber },
+//     { icon: logo4, text: 'Rent Property', content: 'topRentProperty', phoneNumber: PhoneNumber },
+//     { icon: logo5, text: 'Used Cars', content: 'topUsedCars', phoneNumber: PhoneNumber },
+//     { icon: logo6, text: 'Pm Groom', content: 'topPmGroom', phoneNumber: PhoneNumber },
+//     { icon: logo6, text: 'Pm Bride', content: 'topPmBride', phoneNumber: PhoneNumber },
+//     { icon: logo7, text: 'Feature Property', content: 'topFeatureProperty', phoneNumber: PhoneNumber },
+//     { icon: nvprop50, text: 'Not Viewed Property', content: 'topNotViewedProperty', phoneNumber: PhoneNumber },
+//     { icon: logo9, text: 'My Property', content: 'topMyProperty', phoneNumber: PhoneNumber },
+//     { icon: logo10, text: 'Owner Menu', content: 'topOwnerMenu', phoneNumber: PhoneNumber },
+//     { icon: logo11, text: 'Buyer Menu', content: 'topBuyerMenu', phoneNumber: PhoneNumber },
+// ];
+
+
   const bottomNavItems = [
     { icon: <FaHome />, text: 'Home', content: 'bottomHome' },
     { icon: <FaBuilding />, text: 'MyProperty', content: 'bottomProperty' , handler: handlefetchProperty },
@@ -140,18 +160,18 @@ const Main = () => {
 
   const renderContent = () => {
     switch (activeContent) {
-      case 'topPyProperty': return <CardsDemo />;
-      case 'topAllProperty': return <CardsDemo />;
-      case 'topMBuyerList': return <BuyerList />;
-      case 'topRentProperty': return <Nopage />;
-      case 'topUsedCars': return <Nopage />;
-      case 'topPmGroom': return <Nopage />;
-      case 'topPmBride': return <Nopage />;
-      case 'topFeatureProperty': return <Nopage />;
-      case 'topNotViewedProperty': return <Nopage />;
-      case 'topMyProperty': return <TopMyProperty />;
-      case 'topOwnerMenu': return <OwnerMenu />;
-      case 'topBuyerMenu': return <BuyerMenu />;
+      case 'topPyProperty': return <CardsDemo phoneNumber={`${countryCode}${phoneNumber}`} />;
+      case 'topAllProperty': return <CardsDemo phoneNumber={`${countryCode}${phoneNumber}`} />;
+      case 'topMBuyerList': return <BuyerList phoneNumber={`${countryCode}${phoneNumber}`} />;
+      case 'topRentProperty': return <Building />;
+      case 'topUsedCars': return <Building />;
+      case 'topPmGroom': return <Building />;
+      case 'topPmBride': return <Building />;
+      case 'topFeatureProperty': return <Building />;
+      case 'topNotViewedProperty': return <ZeroView />;
+      case 'topMyProperty': return <MyProperty phoneNumber={`${countryCode}${phoneNumber}`} />;
+      case 'topOwnerMenu': return <OwnerMenu phoneNumber={`${countryCode}${phoneNumber}`}  />;
+      case 'topBuyerMenu': return <BuyerMenu phoneNumber={`${countryCode}${phoneNumber}`} />;
       case 'bottomHome': return <PropertyCards  phoneNumber={`${countryCode}${phoneNumber}`} />;
       case 'bottomProperty': 
       // return <MyProperty />
@@ -159,7 +179,7 @@ const Main = () => {
       case 'bottomAdd': 
       // return <AddProps />
         return <AddProps ppcId={ppcId} phoneNumber={`${countryCode}${phoneNumber}`} />;
-      case 'bottomBuyer': return <PropertyForm />;
+      case 'bottomBuyer': return <PropertyForm  phoneNumber={`${countryCode}${phoneNumber}`} />;
       case 'bottomMore': return <MoreComponent  phoneNumber={`${countryCode}${phoneNumber}`} />;
       default: return <Nopage />;
     }

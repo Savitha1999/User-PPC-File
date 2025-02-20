@@ -12,7 +12,7 @@ import EditForm from "./EditForm";
 import AddProps from "./AddProps"; 
 
 
-const MyProperty = () => {
+const MyProperties = () => {
   const location = useLocation();
   const { phoneNumber: statePhoneNumber, countryCode: stateCountryCode } = location.state || {};
   const storedPhoneNumber = localStorage.getItem('phoneNumber');
@@ -51,7 +51,7 @@ const MyProperty = () => {
         setRemovedUsers(response.data.users);
       }
     } catch (error) {
-      // console.error("Error fetching deleted properties:", error);
+      console.error("Error fetching deleted properties:", error);
       // toast.error("Error fetching deleted properties.");
     }
   };
@@ -96,7 +96,7 @@ const MyProperty = () => {
 
   const handleUndo = async (ppcId) => {
     try {
-      const response = await axios.post('http://localhost:5000/PPC/undo-delete', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/undo-delete`, {
         ppcId,
         phoneNumber,
       });
@@ -107,7 +107,7 @@ const MyProperty = () => {
         setPropertyUsers((prev) => [...prev, { ...response.data.user }]);
       }
     } catch (error) {
-      // toast.error("Error undoing property status.");
+      toast.error("Error undoing property status.");
       console.error("Undo Error:", error);
     }
   };
@@ -142,24 +142,22 @@ const MyProperty = () => {
       }
     } catch (error) {
       if (error.response && error.response.data) {
-        // toast.error(error.response.data.message || 'Error adding user.');
+        toast.error(error.response.data.message || 'Error adding user.');
       } else {
-        // toast.error('Error adding user. Please try again.');
+        toast.error('Error adding user. Please try again.');
       }
-      // console.error('Frontend Error:', error);
+      console.error('Frontend Error:', error);
     }
   };
 
-
-  
-
-
   const handleCloseAddForm = () => {
-    setShowAddForm(false); // Close add property form
+    setShowAddForm(false); 
   };
 
+
+
   return (
-    <Container fluid className="p-3 my-3 " style={{ maxHeight: '60vh', width: "480px", overflowY: 'scroll', scrollbarWidth: 'none' }}>
+    <Container fluid className="p-3 my-3 " style={{ maxHeight: '60vh', width: "480px" }}>
       <Helmet>
         <title>Pondy Property | Properties</title>
       </Helmet>
@@ -179,9 +177,7 @@ const MyProperty = () => {
                 <Nav.Item>
                   <Nav.Link className="nav-link" eventKey="removed">Removed</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link className="nav-link" eventKey="expired">Expired</Nav.Link>
-                </Nav.Item>
+                
                 <Nav.Item>
                   <Nav.Link className="nav-link" eventKey="add-prop" onClick={handleAddProperty}>Add Property</Nav.Link>
                 </Nav.Item>
@@ -338,7 +334,7 @@ const MyProperty = () => {
   );
 };
 
-export default MyProperty;
+export default MyProperties;
 
 
 
