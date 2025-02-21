@@ -7,6 +7,8 @@ import {
   FaCity, FaMapMarkerAlt, FaLandmark, FaMoneyBillWave, FaHome, FaRegBuilding, FaCalendarAlt, FaRupeeSign ,
   FaUniversity, FaCheckCircle, FaCompass, FaFileAlt, FaBuilding, FaRuler, FaBed, FaCreditCard, FaChevronDown , FaPhone , FaClock
 , FaComment} from "react-icons/fa";
+
+
 const PropertyForm = ({ phoneNumber, existingData }) => {
   const [formData, setFormData] = useState({
     phoneNumber: phoneNumber || "",
@@ -67,21 +69,19 @@ const PropertyForm = ({ phoneNumber, existingData }) => {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // const requiredFields = ["state", "city", "area", "paymentType", "bankLoan", "propertyApproved"];
-    // for (let field of requiredFields) {
-    //   if (!formData[field]) {
-    //     alert(`${field.replace(/([A-Z])/g, " $1")} is required.`);
-    //     return;
-    //   }
-    // }
-
     try {
+      let response;
+  
       if (formData._id) {
-        const response = await axios.put(`${process.env.REACT_APP_API_URL}/update-buyerAssistance/${formData._id}`, formData);
-        setFormData(response.data.data);
+        // Update using _id
+        response = await axios.put(
+          `${process.env.REACT_APP_API_URL}/update-buyerAssistance/${formData._id}`,
+          formData
+        );
         alert("Buyer Assistance request updated successfully!");
       } else {
         const response = await axios.post(`${process.env.REACT_APP_API_URL}/add-buyerAssistance`, formData);
@@ -93,6 +93,7 @@ const PropertyForm = ({ phoneNumber, existingData }) => {
       alert("Failed to submit the request.");
     }
   };
+
 
   return (
     <div className="property-form-container p-1" style={{ maxHeight: "70vh", overflowY: "scroll",  position: "relative", scrollbarWidth: "none" ,  fontFamily: "Inter, sans-serif",}}>
